@@ -11,7 +11,7 @@ class userMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
+        if (Auth::check() && Auth::user()->role === 'user') {
             return $next($request);
         }
         abort(403, 'Akses ditolak, Anda bukan user !');

@@ -65,12 +65,17 @@
                         <td>{{ $row->phone}}</td>
                         <td>{{ $row->email}}</td>
                         <td>
-                          <img src="{{ asset('storage/public/usersImage/'. $row->image) }}" alt="">
+                          <img src="{{ asset('storage/public/usersImages/'. $row->image) }}" width="50px" class="rounded" alt="">
                         </td>
                         <td>
                             <a href="" class="btn btn-outline-success"><i class="fa-solid fa-eye"></i></a>
-                            <a href="" class="btn btn-outline-secondary"><i class="fa-solid fa-pencil"></i></a>
-                            <a href="" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                            <a href="" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit{{ $row->id }}"><i class="fa-solid fa-pencil"></i></a>
+                            @include('Admin.dataUser.modalUpdate')
+
+
+                            
+                            <a href="" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete{{ $row->id }}"><i class="fa-solid fa-trash"></i></a>
+                            @include('Admin.dataUser.modalDelete')
                         </td>
                     @endforeach
                 </tbody>
@@ -97,30 +102,29 @@
             <div class="modal-body">
                 <form action="{{ route('user.create')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    
                 <div class="form-group">
                       <label class="form-label">Nama Lengkap</label>
-                      <input type="text" class="form-control" name="name" required placeholder="𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼">
+                      <input type="text" class="form-control" name="name" required placeholder=". . .">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Email</label>
-                      <input type="email" class="form-control" name="email" required placeholder="𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼">
+                      <input type="email" class="form-control" name="email" required placeholder=". . .">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Nomor Telepon</label>
-                      <input type="number" class="form-control" name="phone" required placeholder="𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼">
+                      <input type="number" class="form-control" name="phone" required placeholder=". . .">
                     </div>
                     <div class="form-group">
                       <label class="form-label">NIK</label>
-                      <input type="number" class="form-control" name="nik" required placeholder="𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼">
+                      <input type="number" class="form-control" name="nik" required placeholder=". . .">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Foto Profile</label>
-                      <input type="file" class="form-control" name="image" placeholder="𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼">
+                      <input type="file" class="form-control" name="image" placeholder=". . .">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Alamat Lengkap</label>
-                      <input type="text" class="form-control" name="address" required placeholder="𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼𓇼 ⋆.˚ 𓆉 𓆝 𓆡⋆.˚ 𓇼">
+                      <input type="text" class="form-control" name="address" required placeholder=". . .">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Gender</label> <br>
